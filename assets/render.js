@@ -127,7 +127,7 @@ function renderTag(text) {
 }
 
 function getStateClassName(item) {
-  return [item.isAccent && 'is-accent', item.isMuted && 'is-muted'].filter(Boolean).join(' ');
+  return [item.isAccent && 'is-accent', item.isMuted && 'is-muted', item.isWarning && 'is-warning'].filter(Boolean).join(' ');
 }
 
 function isAccentItem(item) {
@@ -193,8 +193,10 @@ function renderPoints(block) {
   return `<ul class="points">${block.items.map(renderPoint).join('')}</ul>`;
 }
 
-function renderPoint(text) {
-  return `<li class="point">${formatText(text)}</li>`;
+// Тезис — строка, а объект { text, isWarning } — когда пункт нужно выделить.
+function renderPoint(item) {
+  const point = typeof item === 'string' ? { text: item } : item;
+  return `<li class="point ${getStateClassName(point)}">${formatText(point.text)}</li>`;
 }
 
 function renderEquation(block) {

@@ -24,4 +24,4 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Тема одна, тёмная. Цвета — только переменные `--color-…` из `:root`, литералов цвета в правилах нет.
 - Раскладка блока подстраивается под ширину самого блока через `@container` (у `.block` задан `container-type`), а не под экран: блок в полширины узок и на широком мониторе. `@media (max-width: 900px)` — только для каркаса страницы, меню и сетки блоков.
-- Состояния — классы `is-accent`, `is-muted`, `is-spotlight`; в данных им соответствуют булевы поля `isAccent`, `isMuted`, `isSpotlight`.
+- Состояния — классы `is-accent`, `is-muted`, `is-spotlight`, `is-warning`; в данных им соответствуют булевы поля `isAccent`, `isMuted`, `isSpotlight`, `isWarning`.

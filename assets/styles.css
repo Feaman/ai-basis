@@ -32,6 +32,10 @@
   --color-gold-soft: color-mix(in srgb, var(--color-gold) 12%, transparent);
   --color-gold-line: color-mix(in srgb, var(--color-gold) 35%, transparent);
   --color-gold-glow: color-mix(in srgb, var(--color-gold) 38%, transparent);
+  --color-red: #ef5a52;
+  --color-red-soft: color-mix(in srgb, var(--color-red) 14%, transparent);
+  --color-red-line: color-mix(in srgb, var(--color-red) 45%, transparent);
+  --color-red-glow: color-mix(in srgb, var(--color-red) 38%, transparent);
 
   --gradient-gold: linear-gradient(135deg, var(--color-gold-light), var(--color-gold) 45%, var(--color-gold-deep));
   --gradient-surface: linear-gradient(
@@ -660,6 +664,20 @@ code {
   border-radius: 50%;
   background: var(--color-gold);
   box-shadow: 0 0 10px var(--color-gold-glow);
+}
+
+/* Предупреждение — пункт на красной плашке; маркер не нужен, пункт выделяет сама плашка. */
+.point.is-warning {
+  padding: 14px 18px;
+  border: 1px solid var(--color-red-line);
+  border-radius: var(--radius-medium);
+  background: var(--color-red-soft);
+  box-shadow: 0 0 32px -10px var(--color-red-glow);
+  color: var(--color-text);
+}
+
+.point.is-warning::before {
+  content: none;
 }
 
 /* ---------- equation: формула ---------- */
