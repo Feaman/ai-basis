@@ -369,9 +369,16 @@ code {
 }
 
 .block-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   margin: 20px 0 0;
   color: var(--color-text-secondary);
   font-size: 14px;
+}
+
+.block-note .icon {
+  color: var(--color-gold);
 }
 
 /* Плитка — общая основа шагов, карточек, слагаемых и слоёв. */

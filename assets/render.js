@@ -6,6 +6,7 @@
  */
 
 const ICON_PATHS = {
+  alert: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5M12 16v.01"/>',
   bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
   book: '<path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/>',
   bot: '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><path d="M9 13v2M15 13v2"/>',
@@ -17,15 +18,19 @@ const ICON_PATHS = {
   database: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
   eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
   file: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
+  folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/>',
   grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   history: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/>',
   home: '<path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/>',
+  image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>',
   lightbulb: '<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/>',
   loop: '<path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/><path d="M3 21v-5h5"/><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/><path d="M21 3v5h-5"/>',
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
   play: '<path d="M7 4l13 8-13 8z"/>',
   plug: '<path d="M9 2v6M15 2v6"/><path d="M6 8h12v4a6 6 0 0 1-12 0z"/><path d="M12 18v4"/>',
   save: '<path d="M5 3h11l4 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 1-2z"/><path d="M8 3v5h7V3"/><rect x="7" y="13" width="10" height="7" rx="1"/>',
+  shield: '<path d="M12 3 5 6v5c0 4.4 3 8.3 7 10 4-1.7 7-5.6 7-10V6z"/>',
   sliders: '<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
   sparkles: '<path d="m12 3 1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/><path d="m19 15 .8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z"/>',
   star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9z"/>',
@@ -102,12 +107,12 @@ function renderIconBadge(name) {
   return icon ? `<span class="icon-badge">${icon}</span>` : '';
 }
 
-// Строка-подпись со значком: возврат по кругу в цепочке, выход из цикла.
+// Строка-подпись со значком: возврат по кругу в цепочке, выход из цикла, подпись под блоком.
 function renderCaption(iconName, text, className) {
   if (!text) {
     return '';
   }
-  return `<p class="caption ${className}">${renderIcon(iconName)}<span>${formatText(text)}</span></p>`;
+  return `<p class="${className}">${renderIcon(iconName)}<span>${formatText(text)}</span></p>`;
 }
 
 function renderTags(texts, className) {
@@ -149,7 +154,7 @@ function renderTile(item, className, extraContent = '', style = '') {
 function renderFlow(block) {
   return `
     <ol class="flow">${block.steps.map(renderFlowStep).join('')}</ol>
-    ${renderCaption('loop', block.loop, 'flow-loop')}`;
+    ${renderCaption('loop', block.loop, 'caption flow-loop')}`;
 }
 
 function renderFlowStep(step) {
@@ -231,7 +236,7 @@ function renderCycle(block) {
       </div>
       <ol class="cycle-steps">${block.steps.map(renderCycleStep).join('')}</ol>
     </div>
-    ${renderCaption('check', block.exit, 'cycle-exit')}`;
+    ${renderCaption('check', block.exit, 'caption cycle-exit')}`;
 }
 
 function renderCycleStep(step, index) {
@@ -314,7 +319,7 @@ function renderBlock(block) {
     <article class="${classNames.join(' ')}">
       ${renderText(block.title, 'block-title', 'h3')}
       ${renderContent(block)}
-      ${renderText(block.note, 'block-note', 'p')}
+      ${renderCaption(block.noteIcon, block.note, 'block-note')}
     </article>`;
 }
 
