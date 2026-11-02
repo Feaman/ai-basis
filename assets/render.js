@@ -247,9 +247,10 @@ function renderCycleStep(step, index) {
 
 function renderCompare(block) {
   const accentIndex = block.columns.findIndex(isAccentItem);
+  // Конец задан явно: у абсолютно позиционированного элемента сетки конец «auto» — это край сетки, и луч тянулся бы до последней колонки.
   const spotlight = accentIndex === -1
     ? ''
-    : `<span class="compare-spotlight" style="grid-column: ${accentIndex + COMPARE_FIRST_VALUE_COLUMN_NUMBER}"></span>`;
+    : `<span class="compare-spotlight" style="grid-column: ${accentIndex + COMPARE_FIRST_VALUE_COLUMN_NUMBER} / span 1"></span>`;
   return `
     <div class="compare-scroll">
       <div class="compare" style="--columns-quantity: ${block.columns.length}">
