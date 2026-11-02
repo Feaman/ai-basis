@@ -311,8 +311,8 @@ window.presentation = {
           title: 'Где хранится память',
           columns: [
             { icon: 'chat', title: 'Чат' },
-            { icon: 'terminal', title: 'Claude Code' },
-            { icon: 'code', title: 'Codex', isAccent: true },
+            { icon: 'terminal', title: 'Claude Code', isAccent: true },
+            { icon: 'code', title: 'Codex' },
           ],
           rows: [
             {
@@ -427,8 +427,8 @@ window.presentation = {
           title: 'Где лежат инструкции',
           columns: [
             { icon: 'chat', title: 'Чат' },
-            { icon: 'terminal', title: 'Claude Code' },
-            { icon: 'code', title: 'Codex', isAccent: true },
+            { icon: 'terminal', title: 'Claude Code', isAccent: true },
+            { icon: 'code', title: 'Codex' },
           ],
           rows: [
             {
