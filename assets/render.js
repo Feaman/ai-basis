@@ -50,6 +50,7 @@ const BLOCK_RENDERERS = {
   flow: renderFlow,
   layers: renderLayers,
   points: renderPoints,
+  screen: renderScreen,
   stacks: renderStacks,
   stats: renderStats,
 };
@@ -303,6 +304,33 @@ function renderLayers(block) {
 
 function renderLayer(item) {
   return renderTile(item, 'layer', renderTags(item.tags, 'tags'));
+}
+
+function renderScreen(block) {
+  return `
+    <figure class="screen">
+      <div class="screen-frame">
+        <img class="screen-image" src="${escapeHtml(block.image)}" alt="${escapeHtml(block.alt)}">
+        ${block.marks.map(renderScreenMark).join('')}
+      </div>
+      <ol class="screen-steps">${block.marks.map(renderScreenStep).join('')}</ol>
+    </figure>`;
+}
+
+// Метка дублирует номер шага под снимком, поэтому скрыта от экранного диктора.
+function renderScreenMark(mark, index) {
+  return `
+    <span class="screen-number screen-mark" style="--x: ${Number(mark.x)}%; --y: ${Number(mark.y)}%" aria-hidden="true">
+      ${index + 1}
+    </span>`;
+}
+
+function renderScreenStep(mark, index) {
+  return `
+    <li class="screen-step">
+      <span class="screen-number">${index + 1}</span>
+      <span>${formatText(mark.text)}</span>
+    </li>`;
 }
 
 function renderBlock(block) {
